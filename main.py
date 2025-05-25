@@ -3,22 +3,25 @@ import numpy as np
 import pandas as pd
 import pickle
 
-
 # flask app
 app = Flask(__name__)
 
+
+
+
 # load databasedataset===================================
-sym_des = pd.read_csv("dataset/symtoms_df.csv")
-precautions = pd.read_csv("dataset/precautions_df.csv")
-workout = pd.read_csv("dataset/workout_df.csv")
-description = pd.read_csv("dataset/description.csv")
-medications = pd.read_csv('dataset/medications.csv')
-diets = pd.read_csv("dataset/diets.csv")
+sym_des = pd.read_csv("datasets/symtoms_df.csv")
+precautions = pd.read_csv("datasets/precautions_df.csv")
+workout = pd.read_csv("datasets/workout_df.csv")
+description = pd.read_csv("datasets/description.csv")
+medications = pd.read_csv('datasets/medications.csv')
+diets = pd.read_csv("datasets/diets.csv")
 
 
 # load model===========================================
-svc = pickle.load(open('model/svc.pkl','rb'))
+#svc = pickle.load(open('Models/svc.pkl', 'rb'))
 
+svc = pickle.load(open("C:\Users\mohds\Downloads\Medicine-Recommendation-System-Personalized-Medical-Recommendation-System-with-Machine-Learning-main\Medicine-Recommendation-System-Personalized-Medical-Recommendation-System-with-Machine-Learning-main\Models/svc.pkl" , 'rb'))
 
 #============================================================
 # custome and helping functions
@@ -69,7 +72,7 @@ def home():
         # mysysms = request.form.get('mysysms')
         # print(mysysms)
         print(symptoms)
-        if symptoms =="Symptoms":
+        if symptoms == "Symptoms":
             message = "Please either write symptoms or you have written misspelled symptoms"
             return render_template('index.html', message=message)
         else:
@@ -112,7 +115,6 @@ def developer():
 def blog():
     return render_template("blog.html")
 
-
+#python main
 if __name__ == '__main__':
-
     app.run(debug=True)
